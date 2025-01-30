@@ -1,1 +1,39 @@
- 
+name: 'Repo Visualizer'
+description: 'Generate an SVG diagram of your repository structure'
+author: 'Your Name'
+inputs:
+  output_file:
+    description: 'Path to output SVG file'
+    default: 'diagram.svg'
+  excluded_paths:
+    description: 'Comma-separated paths to exclude'
+    default: 'node_modules,bower_components,dist,out,build,eject,.next,.netlify,.yarn,.vscode,package-lock.json,yarn.lock'
+  excluded_globs:
+    description: 'Semicolon-separated glob patterns to exclude'
+  root_path:
+    description: 'Root directory to visualize'
+    default: ''
+  max_depth:
+    description: 'Maximum folder depth to display'
+    default: '9'
+  should_push:
+    description: 'Whether to commit and push changes'
+    default: 'true'
+  commit_message:
+    description: 'Commit message for diagram updates'
+    default: 'Repo visualizer: updated diagram'
+  branch:
+    description: 'Target branch for commits'
+    default: 'main'
+  artifact_name:
+    description: 'Artifact name for diagram storage'
+    default: ''
+  file_colors:
+    description: 'JSON object of file extension colors'
+    default: '{}'
+outputs:
+  svg:
+    description: 'Generated SVG content'
+runs:
+  using: 'node20'
+  main: 'dist/index.js' 
