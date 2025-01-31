@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './styles/App.css'; // App-specific styles
 import FileSystemChart from './components/FileSystemChart/FileSystemChart';
-import { crawlFileSystem } from './data/crawler/fileCrawler';
-import { transformFileSystemData } from './data/dataTransformer';
 
 function App() {
   const [chartData, setChartData] = useState(null);
