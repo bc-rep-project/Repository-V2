@@ -15,11 +15,9 @@ function App() {
     setError(null);
     
     try {
-      const response = await fetch(`/api/filesystem?path=${encodeURIComponent(rootDirPath)}`);
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      
-      const transformedData = await response.json();
-      setChartData(transformedData);
+      const response = await fetch('/api/filesystem?path=' + encodeURIComponent(rootDirPath));
+      const data = await response.json();
+      setChartData(data);
     } catch (err) {
       setError(err);
       setChartData(null);
