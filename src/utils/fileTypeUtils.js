@@ -1,5 +1,3 @@
-import path from 'path';
-
 const CODE_TYPES = new Set(['js', 'css', 'html', 'json', 'xml', 'text', 'md']);
 const IMAGE_EXT = new Set(['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg']);
 const VIDEO_EXT = new Set(['mp4', 'mov', 'avi', 'wmv', 'mkv']);
@@ -9,9 +7,10 @@ const DOC_EXT = new Set(['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx']);
 export function getFileType(filename) {
   if (!filename || typeof filename !== 'string') return 'other';
   
-  const ext = path.extname(filename).toLowerCase().slice(1);
-  if (!ext) return 'text';
-
+  // Browser-compatible extension extraction
+  const lastDotIndex = filename.lastIndexOf('.');
+  const ext = lastDotIndex === -1 ? '' : filename.slice(lastDotIndex + 1).toLowerCase();
+  
   if (CODE_TYPES.has(ext)) return ext;
   if (IMAGE_EXT.has(ext)) return 'image';
   if (VIDEO_EXT.has(ext)) return 'video';
