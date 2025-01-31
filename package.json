@@ -15,13 +15,15 @@
     "react-scripts": "5.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0"
+    "@testing-library/user-event": "^13.5.0",
+    "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm-run-all --parallel start:client start:server",
+    "start:client": "cd client && npm start",
+    "start:server": "cd server && npm run dev",
+    "build": "cd client && npm run build",
+    "test": "cd client && npm test"
   },
   "eslintConfig": {
     "extends": [

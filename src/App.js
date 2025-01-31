@@ -15,10 +15,10 @@ function App() {
     setError(null);
     
     try {
-      const rawData = await crawlFileSystem(rootDirPath);
-      if (!rawData) throw new Error('No data found');
+      const response = await fetch(`/api/filesystem?path=${encodeURIComponent(rootDirPath)}`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       
-      const transformedData = transformFileSystemData(rawData);
+      const transformedData = await response.json();
       setChartData(transformedData);
     } catch (err) {
       setError(err);
